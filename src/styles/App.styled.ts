@@ -8,6 +8,7 @@ export const HomeLogo = styled.div`
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+  align-items: center;
 
   h1 {
     font-size: 36px;
@@ -36,8 +37,9 @@ export const TimeTracker = styled.div`
   flex-direction: column;
   padding: 2rem;
   box-sizing: border-box; /* add this */
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
   height: 70vh;
 `;
 
@@ -60,6 +62,7 @@ export const Button = styled.button`
   font-size: 12px;
   font-weight: 400;
   padding: 10px;
+  margin-bottom: 0.5rem;
   background-color: ${({ theme }) => theme.colors.buttonBackground};
   color: ${({ theme }) => theme.colors.green};
   border: 0;
@@ -86,6 +89,7 @@ export const SingleDayDate = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 export const SingleDayDateHeading = styled.h3`
