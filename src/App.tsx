@@ -1,13 +1,6 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
-} from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { db } from "./firebase.js";
@@ -33,6 +26,14 @@ import {
   TotalData,
   TotalNumberOfHours,
 } from "./styles/App.styled.js";
+import {
+  createDate,
+  handleDateChange,
+  handleEndTime,
+  handleStartTime,
+  nextDate,
+  previousDate,
+} from "./functions.js";
 
 interface DateData {
   date: string;
@@ -44,35 +45,6 @@ const App = () => {
   const [dates, setDates] = useState<DateData[]>([]);
   const [dateNumber, setDateNumber] = useState<number>();
   const [totalHours, setTotalHours] = useState<number>();
-
-  // create date
-  const createDate = async () => {
-    const newDate = {
-      date: moment(new Date()).format("DD MMMM YYYY"),
-      startTime: 0,
-      endTime: 0,
-    } as DateData;
-
-    await addDoc(collection(db, "time-tracker"), newDate);
-  };
-
-  // update previous date
-  const previousDate = async (date: string, id: string) => {
-    const previousDate = moment(date).subtract(1, "day").toDate();
-    const changeFormat = moment(previousDate).format("DD MMMM YYYY");
-    await updateDoc(doc(db, "time-tracker", id), {
-      date: changeFormat,
-    });
-  };
-
-  // update next date
-  const nextDate = async (date: string, id: string) => {
-    const nextDate = moment(date).add(1, "day").toDate();
-    const changeFormat = moment(nextDate).format("DD MMMM YYYY");
-    await updateDoc(doc(db, "time-tracker", id), {
-      date: changeFormat,
-    });
-  };
 
   const SingleDayDateDay = ({
     value,
@@ -86,33 +58,6 @@ const App = () => {
         {moment(value).format("DD MMMM YYYY")}
       </SingleDayDateHeading>
     );
-  };
-
-  // update date
-  const handleDateChange = async (date: Date | any, id: string) => {
-    const updatedDate = moment(date).format("DD MMMM YYYY");
-    await updateDoc(doc(db, "time-tracker", id), {
-      date: updatedDate,
-    });
-  };
-
-  // update start time
-  const handleStartTime = async (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    id: string
-  ) => {
-    await updateDoc(doc(db, "time-tracker", id), {
-      startTime: parseInt(e.target.value),
-    });
-  };
-  // update end time
-  const handleEndTime = async (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    id: string
-  ) => {
-    await updateDoc(doc(db, "time-tracker", id), {
-      endTime: parseInt(e.target.value),
-    });
   };
 
   useEffect(() => {
