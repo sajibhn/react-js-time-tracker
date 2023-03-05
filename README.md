@@ -12,8 +12,8 @@ you can also see how many days and how many hours you have foucs.
 
 - React JS - [Link](https://reactjs.org/)
 - Firebase - [Link](https://firebase.google.com/)
-- vite-plugin-svgr - [Link](https://www.npmjs.com/package/vite-plugin-svgr)
-- react-datepicker - [Link](https://www.npmjs.com/package/react-datepicker)
+- Vite-plugin-svgr - [Link](https://www.npmjs.com/package/vite-plugin-svgr)
+- React-datepicker - [Link](https://www.npmjs.com/package/react-datepicker)
 - Styled Componets - [Link](https://styled-components.com/)
 
 ## Features
